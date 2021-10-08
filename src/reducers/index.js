@@ -1,8 +1,18 @@
 
 export const initialState = {
+	smurfsArray: [],
+	loading: false,
+	errorMsg:"We've encountered an error, try again later."
+
 }
 
-const reducer = ()=>{
+const reducer = (state, action) => {
+	switch (action.type) {
+		case 'SMURF_FETCH':
+		case 'SUCCESS':
+		case 'ERROR':
+			default:
+	}
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
