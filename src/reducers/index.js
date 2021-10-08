@@ -1,18 +1,25 @@
 
+import { ADD_SMURF, FETCH_SMURFS_START, FETCH_SMURFS_SUCCESS, FETCH_SMURFS_FAILURE, SET_ERROR } from '../actions/index';
 export const initialState = {
-	smurfsArray: [],
-	loading: false,
-	errorMsg:"We've encountered an error, try again later."
-
+    smurfs: [],
+    isLoading: false,
+    errorMsg: ''
 }
-
-const reducer = (state, action) => {
-	switch (action.type) {
-		case 'SMURF_FETCH':
-		case 'SUCCESS':
-		case 'ERROR':
-			default:
-	}
+const reducer = (state = initialState, action)=>{
+    switch(action.type) {
+        case ADD_SMURF:
+            return {...state, smurfs: [...state.smurfs, action.payload]}
+        case SET_ERROR:
+            return { ...state, errorMsg: action.payload }
+        case FETCH_SMURFS_START:
+            return { ...state, isLoading: true }
+        case FETCH_SMURFS_SUCCESS:
+            return { ...state, isLoading: false, smurfs: action.payload }
+        case FETCH_SMURFS_FAILURE: 
+            return { ...state, isLoading: false, error: action.payload}
+        default:
+            return state;
+    }
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
@@ -28,5 +35,5 @@ export default reducer;
 //3. Add in a reducer case to accomidate the start of a smurf fetch.
 //4. Add in a reducer case to accomidate the successful smurf api fetch.
 //5. Add in a reducer cases to accomidate the failed smurf api fetch.
-//6. Add in a reducer case to accomidate adding a smurf (including the name, nickname, position, summary and an internally generated id) into your smurf list.
+//6. Add in a reducer case to accomidate adding a smurf including the name, nickname, position, summary and an internally generated id into your smurf list.
 //7. Add in a reducer case that adds in a value to the error message.
